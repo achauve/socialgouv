@@ -1,9 +1,10 @@
 import type { Context } from "probot";
 import { getRunById } from "../services/runs";
+import { workflowRepository } from "../helpers/environment";
 
 const handleCompletedRun = async (context: Context): Promise<void> => {
   if (!context.payload.workflow_run.id) return;
-  if (context.payload.repository.name !== "test-workflows") return;
+  if (context.payload.repository.name !== workflowRepository) return;
 
   const {
     check,

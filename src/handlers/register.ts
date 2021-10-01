@@ -1,9 +1,7 @@
 import type { Probot } from "probot";
 import { Request, Response } from "express";
 import { getRun, updateRun } from "../services/runs";
-
-// const org = "socialgouv";
-const username = "gary-van-woerkens";
+import { username, workflowRepository } from "../helpers/environment";
 
 const handleRegister = async (
   req: Request,
@@ -22,7 +20,7 @@ const handleRegister = async (
     repo: repo_name,
     owner: repo_owner,
     status: "in_progress",
-    details_url: `https://github.com/gary-van-woerkens/test-workflows/actions/runs/${runId}`,
+    details_url: `https://github.com/${username}/${workflowRepository}/actions/runs/${runId}`,
   };
 
   try {
