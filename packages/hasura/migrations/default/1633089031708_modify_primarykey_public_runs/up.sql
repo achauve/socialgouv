@@ -1,0 +1,6 @@
+BEGIN TRANSACTION;
+ALTER TABLE "public"."runs" DROP CONSTRAINT "runs_pkey";
+
+ALTER TABLE "public"."runs"
+    ADD CONSTRAINT "runs_pkey" PRIMARY KEY ("id");
+COMMIT TRANSACTION;
