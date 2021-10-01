@@ -8,7 +8,7 @@ const handleRegister = async (
   res: Response,
   { app }: { app: Probot }
 ): Promise<Response> => {
-  const { id, run_id: runId, name, sha, repo_owner, repo_name } = req.query;
+  const { id, name, sha, runId, repoOwner, repoName } = req.query;
 
   const run = await getRun({ id });
 
@@ -17,8 +17,8 @@ const handleRegister = async (
   const data = {
     name: name,
     head_sha: sha,
-    repo: repo_name,
-    owner: repo_owner,
+    repo: repoName,
+    owner: repoOwner,
     status: "in_progress",
     details_url: `https://github.com/${username}/${workflowRepository}/actions/runs/${runId}`,
   };
