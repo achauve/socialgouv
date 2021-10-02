@@ -1,7 +1,7 @@
 import type { Probot } from "probot";
 import { Request, Response } from "express";
 import { getRun, updateRun } from "../services/runs";
-import { username, workflowRepository } from "../helpers/environment";
+import { APP_USERNAME, APP_WORKFLOW_REPOSITORY } from "../helpers/environment";
 
 const handleRegister = async (
   req: Request,
@@ -20,13 +20,15 @@ const handleRegister = async (
     repo: repoName,
     owner: repoOwner,
     status: "in_progress",
-    details_url: `https://github.com/${username}/${workflowRepository}/actions/runs/${runId}`,
+    details_url: `https://github.com/${APP_USERNAME}/${APP_WORKFLOW_REPOSITORY}/actions/runs/${runId}`,
   };
 
   try {
     let octokit = await app.auth();
     // const installation = await octokit.apps.getOrgInstallation({ org });
-    const installation = await octokit.apps.getUserInstallation({ username });
+    const installation = await octokit.apps.getUserInstallation({
+      username: APP_USERNAME,
+    });
     octokit = await app.auth(installation.data.id);
     const { data: check } = await octokit.checks.create(data);
     await updateRun({ check, id: String(id), runId: Number(runId) });

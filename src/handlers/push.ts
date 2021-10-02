@@ -1,6 +1,6 @@
 import type { Context } from "probot";
 import { insertRun } from "../services/runs";
-import { username, workflowRepository } from "../helpers/environment";
+import { APP_USERNAME, APP_WORKFLOW_REPOSITORY } from "../helpers/environment";
 
 const handlePush = async (context: Context): Promise<void> => {
   const webhook = await context.octokit.apps.getWebhookConfigForApp();
@@ -23,8 +23,8 @@ const handlePush = async (context: Context): Promise<void> => {
   const { id } = await insertRun({ push });
 
   await context.octokit.repos.createDispatchEvent({
-    owner: username,
-    repo: workflowRepository,
+    owner: APP_USERNAME,
+    repo: APP_WORKFLOW_REPOSITORY,
     event_type: "socialgouv-bot",
     client_payload: {
       id,

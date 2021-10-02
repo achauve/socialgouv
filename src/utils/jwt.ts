@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import type { SignOptions } from "jsonwebtoken";
-import { jwtKey } from "../helpers/environment";
+import { APP_JWT_KEY } from "../helpers/environment";
 
 export function getJwt(): string {
   const signOptions: SignOptions = {
@@ -15,6 +15,6 @@ export function getJwt(): string {
     },
   };
 
-  const token = jwt.sign(claim, jwtKey, signOptions);
+  const token = jwt.sign(claim, APP_JWT_KEY, signOptions);
   return token;
 }
