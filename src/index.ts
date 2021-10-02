@@ -20,6 +20,8 @@ export default async (
     handleRegister(req, res, { app })
   );
 
+  router.get("/healthz", (_req: Request, res: Response) => res.sendStatus(200));
+
   app.on("workflow_run.completed", handleCompletedRun);
   app.on("push", (context: Context) => handlePush(context));
 

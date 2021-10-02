@@ -7,7 +7,7 @@ services:
     - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgrespassword
-  graphql-engine:
+  hasura:
     build:
       context: .
       dockerfile: ./packages/hasura/Dockerfile
@@ -18,10 +18,10 @@ services:
     restart: always
     environment:
       HASURA_GRAPHQL_DEV_MODE: "true"
-      PG_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      HASURA_GRAPHQL_ADMIN_SECRET: 5V5ar9f56YDd4R8Fbb875rLKUzfgbfRW
+      # PG_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_METADATA_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
-      ## uncomment next line to set an admin secret
-      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+      HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS512", "key": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAz4tl2rsE2eB3unfo4tUE\nrVOqBUvJv4NJ/WkJi/0/jVFqNVM1c/IFYxszIe2q5Z7ELuKYw7FVCDuXYCsM0bMC\nHCAZY1iiB+clqJVGaQj9v/UiLBRnp9Idg3wNDocv3qIHwzLsF2WVjfBCQezbBepI\nZB0ynK8+XfKt2+78bksLJrWPKoJ99Du7HY6Jt9xIdQ3mGBFigKcfRinGsQLi71sU\n7OWJQYIhqrNqh78HtdJMd1tufdrIAPRVqUQRzMzDgwQLfdKW7cFTkmhDh2CQZnwC\nR1zFHgsOp2sA1ladCdP8vlRVdcO3oJ6VibKFQok3/FjUGPT/fofXxisv4TwilZxb\nHLBbx7jmTgMwuhLeTq+caxuaEjwhpZYQGcHE5QFDnVwZ6kEcrDPWMWAB/UuXPVrn\nzbugnKE//ZcFXIhzAzbXRVeelqfxQWL/EtG7k2aLEEXwPrnKl2zMlDYo6YrTFaqw\nZ39I6VPWkKb0Ta67FLCAHU/VczU29/bWDAMArXe3XZuhAC2WlHTOvwIv0rZPKbVs\n9M3OS8NnoX/TlHneMyLZ0ZdIXGmV5jC84NnErqpzxlztjvKqbgCynwL/cN2cEmO4\n3LhHHG6XHhh+WN2TZyJdX9fnPwntHrDH/p/PXgwTGbSSiyGdI/RaZvqdzlTRvDb+\nLMYr1kZjvFeCsR8I2sF2hNkCAwEAAQ==\n-----END PUBLIC KEY-----"}'
 volumes:
   db_data:

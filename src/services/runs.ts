@@ -1,7 +1,13 @@
 import { GraphQLClient, gql } from "graphql-request";
+import { getJwt } from "../utils/jwt";
 
-const client = new GraphQLClient("http://localhost:8080/v1/graphql");
-// client.setHeader("authorization", `Bearer ${token}`);
+const token = getJwt();
+
+const client = new GraphQLClient("http://localhost:8080/v1/graphql", {
+  headers: {
+    authorization: `Bearer ${token}`,
+  },
+});
 
 export const getRun = async (params: Record<string, unknown>): Promise<Run> => {
   const query = gql`

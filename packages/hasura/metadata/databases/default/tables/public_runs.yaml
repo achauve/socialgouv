@@ -1,3 +1,31 @@
 table:
   name: runs
   schema: public
+insert_permissions:
+- permission:
+    backend_only: false
+    check: {}
+    columns:
+    - check
+    - push
+    - run_id
+  role: bot
+select_permissions:
+- permission:
+    columns:
+    - check
+    - push
+    - run_id
+    - created_at
+    - id
+    filter: {}
+  role: bot
+update_permissions:
+- permission:
+    check: {}
+    columns:
+    - check
+    - push
+    - run_id
+    filter: {}
+  role: bot
