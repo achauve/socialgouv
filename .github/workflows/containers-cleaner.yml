@@ -17,4 +17,7 @@ jobs:
         retention-weeks: '2'
         containers: |
           fabrique/standup
+          fabrique/carnets
+          fabrique/hasura
+          fabrique/www
           docker/no-k8s
