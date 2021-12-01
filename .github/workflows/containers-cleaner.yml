@@ -12,6 +12,7 @@ jobs:
 
     - uses: socialgouv/actions/containers-cleaner@containers-cleaner
       with:
+        organization: socialgouv
         token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
         retention-weeks: '2'
         containers: |
