@@ -16,3 +16,4 @@ jobs:
         retention-weeks: '2'
         containers: |
           fabrique/standup
+          docker/no-k8s
