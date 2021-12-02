@@ -15,6 +15,12 @@ jobs:
         organization: socialgouv
         token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
         retention-weeks: '2'
+        protected-tags: |
+          ^prod$
+          ^latest$
+          ^preprod$
+          ^prod-(\w+)$
+          ^(\d+\.\d+)(\.\d+)?(-(alpha|beta).\d+)?$
         containers: |
           fabrique/standup
           fabrique/carnets
