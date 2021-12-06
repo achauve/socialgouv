@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: socialgouv/actions/containers-cleaner@containers-cleaner
+    - uses: socialgouv/actions/containers-cleaner@v1
       with:
         organization: socialgouv
         token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
