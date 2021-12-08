@@ -15,6 +15,10 @@ jobs:
       with:
         organization: socialgouv
 
+    - name: debug
+      run: |
+        echo "${{ steps.list.outputs.containers }}"
+
     - uses: socialgouv/actions/containers-cleaner@v1
       with:
         organization: socialgouv
@@ -26,4 +30,5 @@ jobs:
           ^preprod$
           ^prod-(\w+)$
           ^(\d+\.\d+)(\.\d+)?(-(alpha|beta).\d+)?$
-        containers: ${{ steps.list.outputs.containers }}
+        containers: |
+          ${{ steps.list.outputs.containers }}
