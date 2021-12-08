@@ -19,7 +19,7 @@ jobs:
       run: |
         echo "${{ steps.list.outputs.containers }}"
 
-    - uses: socialgouv/actions/containers-cleaner@v1
+    - uses: socialgouv/actions/containers-cleaner@containers-list
       with:
         organization: socialgouv
         token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
