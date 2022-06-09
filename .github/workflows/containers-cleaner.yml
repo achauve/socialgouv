@@ -25,6 +25,9 @@ jobs:
         token: ${{ secrets.SOCIALGROOVYBOT_BOTO_PAT }}
         retention-weeks: '2'
         protected-tags: |
+          ^main$
+          ^master$
+          ^dev$
           ^prod$
           ^latest$
           ^preprod$
